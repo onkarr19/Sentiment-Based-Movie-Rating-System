@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+    <div id="main_cont">
+        <div class="container">
+            <div id="content">
+
+                <br><br>
+                {% for i in query %}
+
+                    <div class="home_wide_box">
+                        <div class="home_wide_box_img">
+                            <a href="/movies/{{ i.id }}"><img src="/media/{{ i.poster }}"/></a>
+                        </div><!--//home_wide_box_img-->
+                        <div class="home_wide_box_right">
+                            <div class="left">
+                                <h3><a href="/movies/{{ i.id }}">{{ i.title }}</a></h3>
+
+                                <p>Rated as: {{ i.rating | floatformat }}/10</p>
+                                <p>Casts: {{ i.cast }}</p>
+                                <p>Release Date: {{ i.date }}</p>
+                            </div>
+
+                            <div class="clear"></div>
+                        </div><!--//home_wide_box_right-->
+                        <div class="clear"></div>
+                    </div><!--//home_wide_box-->
+
+
+                {% endfor %}
+
+            </div><!--//content-->
+
+        </div><!--//container-->
+    </div><!--//main_cont-->
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% block content %}
+
+    <div id="main_cont">
+        <div class="container">
+        <br><br>
+
+            <main class="form-signin text-center">
+                <form method="post" action="/accounts/login">
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                    <ul><input type="text" name="username" class="form-control" placeholder="Username" required autofocus></ul>
+                    <ul><input type="password" name="password" class="form-control" placeholder="Password" required autofocus></ul>
+
+                    <div>
+                        {% for message in messages %}
+                            <h3>{{message}}</h3>
+                        {% endfor %}
+                    </div>
+
+                    <ul><button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button></ul>
+                </form>
+            </main>
+
+        </div><!--//container-->
+    </div><!--//main_cont-->
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+<div id="main_cont">
+    <div class="container">
+        <br><br>
+        <div id="slideshow_cont">
+			<img src="{% static 'images/arrow-prev.png' %}" alt="prev" class="slide_prev" />
+			<img src="{% static 'images/arrow-next.png' %}" alt="next" class="slide_next" />
+
+				<div class="slide_box slide_box_first">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ new_releases.trailer }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+		</div><!--//slideshow_cont-->
+
+
+		<div id="content">
+            <div class="home_box ">
+                <a href="/movies/{{ new_releases.id }}"><img width="400" height="225" src="/media/{{ new_releases.poster }}" class="attachment-home-box size-home-box wp-post-image" alt="" /></a>
+                <h3><a href="/new-releases/">New Releases</a></h3>
+            </div><!--//home_box-->
+
+            <div class="home_box ">
+                <a href="/movies/{{ top_rated.id }}"><img width="400" height="225" src="/media/{{ top_rated.poster }}" class="attachment-home-box size-home-box wp-post-image" alt="" /></a>
+                <h3><a href="/top-rated/">Top Rated</a></h3>
+            </div><!--//home_box-->
+
+            <div class="home_box ">
+                <a href="/movies/{{ movies.id }}"><img width="400" height="225" src="/media/{{ movies.poster }}" class="attachment-home-box size-home-box wp-post-image" alt="" /></a>
+                <h3><a href="/movies/">All Movies</a></h3>
+            </div><!--//home_box-->
+
+            <div class="clear"></div>
+
+		</div><!--//content-->
+
+		<div class="clear"></div>
+
+	</div><!--//container-->
+</div><!--//main_cont-->
+
+{% endblock %}

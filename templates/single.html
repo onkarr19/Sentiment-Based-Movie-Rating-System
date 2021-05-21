@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ query.title }} {% endblock %}
+{% block content %}
+
+    <div id="main_cont">
+        <div class="container">
+        <br><br>
+            <div class="single_left">
+
+
+                <h1 class="single_title"><b>{{ query.title }}</b></h1>
+
+                <div class="single_inside_content">
+
+                    <p><img class="alignnone size-full wp-image-212" src="/media/{{ query.poster }}" data-id="212" sizes="(max-width: 1310px) 100vw, 1310px" /></p>
+                    <p>{{ query.desc }}</p>
+
+                </div><!--//single_inside_content-->
+
+                <br /><br />
+
+
+
+                <div class="next_prev_cont">
+                    <div class="left">
+                        <a href="/movies/{{ query.id|add:'-1'}}" rel="prev"><i>Previous movie</i><br /></a>
+                    </div>
+                    <div class="right">
+                        <a href="/movies/{{ query.id|add:'1'}}" rel="next"><i>Next movie</i><br /></a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+
+
+            </div><!--//single_left-->
+
+            <div id="sidebar">
+                <div class="side_box">
+                    <h3 class="side_title">Details</h3>
+                    <ul>
+                        <li>Rating: {{ query.rating | floatformat }}/10</li>
+                        <li>Casts: {{ query.cast }}</li>
+                        <li>Director: {{ query.director }}</li>
+                        <li>Producer: {{ query.producer }}</li>
+                        <li>Release Date: {{ query.date }}</li>
+                        <li><a href="https://www.youtube.com/embed/{{ query.trailer }}" target="_blank">Watch Trailer</a></li>
+                    </ul>
+
+                </div>
+                <div class="side_box">
+                    <h3 class="side_title">Reviews</h3>
+                    <ul>
+                        {% for i in reviews %}
+                            <p>
+                                <li>
+                            <div class="left">{{ i.review }} </div>
+                            <div class="right"> - {{ i.author }} </div>
+                            <br><hr>
+                            </li>
+                            </p>
+
+
+
+                        {% endfor %}
+                    <li></li>
+
+                        <form method="post" action="/movies/{{ query.id }}/review">
+                            {% csrf_token %}
+                            <label>
+                                <textarea name="review" rows="4" cols="40" required autofocus>{{ placeholder}}</textarea>
+                            </label>
+                            <div class="red">
+                                {% for message in messages %}
+                                    <h3>{{message}}</h3>
+                                {% endfor %}
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary" type="submit" autofocus>Post</button>
+                        </form>
+                    </ul>
+
+                </div>
+
+
+            </div><!--//sidebar-->
+            <div class="clear"></div>
+
+        </div><!--//container-->
+    </div><!--//main_cont-->
+
+{% endblock %}

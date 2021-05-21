@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="slider movie-items">
+        <div class="container">
+            <div class="row">
+                <div class="social-link">
+                    <p>Follow us: </p>
+                    <a href="#"><i class="ion-social-facebook"></i></a>
+                    <a href="#"><i class="ion-social-twitter"></i></a>
+                    <a href="#"><i class="ion-social-googleplus"></i></a>
+                    <a href="#"><i class="ion-social-youtube"></i></a>
+                </div>
+                <div  class="slick-multiItemSlider">
+                    {% for movie in movies %}
+                        <div class="movie-item">
+                            <div class="mv-img">
+                                <a href="#"><img src="/media/{{ movie.poster }}" alt="" width="285" height="437"></a>
+                            </div>
+                            <div class="hvr-inner">
+                                <a href="/{{ movie.category }}-view/{{ movie.id }}">{{ movie.title }}</a>
+                            </div>
+                            <div class="title-in">
+                                <div class="cate">
+                                    <span class="blue"><a href="#">{{ movie.category }}</a></span>
+                                </div>
+                                <h6><a href="#">{{ movie.title }}</a></h6>
+                                <p><i class="ion-android-star"></i><span>{{ movie.rating }}</span> /10</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="movie-items">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-8">
+                    {% for cat, range in catTabs %}
+                        <div class="title-hd">
+                            <h2>{{ cat.0.0.category }}</h2>
+                            <a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+                        </div>
+                        <div class="tabs">
+                            <ul class="tab-links">
+                                <li class="active"><a href="#tab{{ forloop.counter }}1">#Popular</a></li>
+                                <li><a href="#tab{{ forloop.counter }}2"> #Coming soon</a></li>
+                                <li><a href="#tab{{ forloop.counter }}3">  #Top rated  </a></li>
+                                <li><a href="#tab{{ forloop.counter }}4"> #Most reviewed</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab{{ forloop.counter }}1" class="tab active">
+                                    <div class="row">
+                                        <div class="slick-multiItem">
+                                            {% for i in cat.0 %}
+                                                <div class="slide-it">
+                                                    <div class="movie-item">
+                                                        <div class="mv-img">
+                                                            <img src="/media/{{ i.poster }}" alt="" width="185" height="284">
+                                                        </div>
+                                                        <div class="hvr-inner">
+                                                            <a  href="/{{ i.category }}-view/{{ i.id }}">{{i.title}}</a>
+                                                        </div>
+                                                        <div class="title-in">
+                                                            <h6><a href="#">{{ i.title}}</a></h6>
+                                                            <p><i class="ion-android-star"></i><span>{{ i.rating }}</span> /10</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% for j in '234' %}
+                                <div id="tab{{ forloop.parentloop.counter }}{{ j }}" class="tab">
+                                    <div class="row">
+                                        <div class="slick-multiItem">
+                                            {% for i in cat.1 %}
+                                                <div class="slide-it">
+                                                    <div class="movie-item">
+                                                        <div class="mv-img">
+                                                            <img src="/media/{{ i.poster }}" alt="" width="185" height="284">
+                                                        </div>
+                                                        <div class="hvr-inner">
+                                                            <a  href="/{{ i.category }}-view/{{ i.id }}">{{i.title}}</a>
+                                                        </div>
+                                                        <div class="title-in">
+                                                            <h6><a href="#">{{ i.title}}</a></h6>
+                                                            <p><i class="ion-android-star"></i><span>{{ i.rating }}</span> /10</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="celebrities">
+                            <h4 class="sb-title">Spotlight Celebrities</h4>
+                            <div class="celeb-item">
+                                <a href="#"><img src="{% static 'images/uploads/ava1.jpg' %}" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Samuel N. Jack</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="{% static 'images/uploads/ava2.jpg' %}" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Benjamin Carroll</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="{% static 'images/uploads/ava3.jpg' %}" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Beverly Griffin</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="{% static 'images/uploads/ava4.jpg' %}" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Justin Weaver</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">See all celebrities<i class="ion-ios-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Trailers section-->
+    <div class="trailers">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-12">
+                    <div class="title-hd">
+                        <h2>in theater</h2>
+                        <a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+                    </div>
+                    <div class="videos">
+                        <div class="slider-for-2 video-ft">
+                            {% for i in theater %}
+                                <div>
+                                    <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/{{ i.trailer }}"></iframe>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="slider-nav-2 thumb-ft">
+                            {% for i in theater %}
+                                <div class="item">
+                                    <div class="trailer-img">
+                                        <img src="/media/{{ i.poster }}"  alt="photo by Barn Images" width="4096" height="2737">
+                                    </div>
+                                    <div class="trailer-infor">
+                                        <h4 class="desc">{{ i.title }}</h4>
+                                        <p>{{ i.category}} , {{ i.date}}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- latest new v1 section-->
+    <div class="latestnew">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-8">
+                    <div class="ads">
+                        <img src="{% static 'images/uploads/ads2.png' %}" alt="" width="728" height="106">
+                    </div>
+                    <div class="title-hd">
+                        <h2>Latest news</h2>
+                    </div>
+                    <div class="tabs">
+                        <ul class="tab-links-3">
+                            <li class="active"><a href="#tab31">#Movies </a></li>
+                            <li><a href="#tab32"> #TV Shows </a></li>
+                            <li><a href="#tab33">  # Celebs</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab31" class="tab active">
+                                <div class="row">
+                                    <div class="blog-item-style-1">
+                                        <img src="{% static 'images/uploads/blog-it1.jpg' %}" alt="" width="170" height="250">
+                                        <div class="blog-it-infor">
+                                            <h3><a href="#">Brie Larson to play first female white house candidate Victoria Woodull in Amazon film</a></h3>
+                                            <span class="time">13 hours ago</span>
+                                            <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab32" class="tab">
+                                <div class="row">
+                                    <div class="blog-item-style-1">
+                                        <img src="{% static 'images/uploads/blog-it2.jpg' %}" alt="" width="170" height="250">
+                                        <div class="blog-it-infor">
+                                            <h3><a href="#">Tab 2</a></h3>
+                                            <span class="time">13 hours ago</span>
+                                            <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab33" class="tab">
+                                <div class="row">
+                                    <div class="blog-item-style-1">
+                                        <img src="{% static 'images/uploads/blog-it1.jpg' %}" alt="" width="170" height="250">
+                                        <div class="blog-it-infor">
+                                            <h3><a href="#">Tab 3</a></h3>
+                                            <span class="time">13 hours ago</span>
+                                            <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="morenew">
+                        <div class="title-hd">
+                            <h3>More news on Blockbuster</h3>
+                            <a href="#" class="viewall">See all Movies news<i class="ion-ios-arrow-right"></i></a>
+                        </div>
+                        <div class="more-items">
+                            <div class="left">
+                                <div class="more-it">
+                                    <h6><a href="#">Michael Shannon Frontrunner to play Cable in “Deadpool 2”</a></h6>
+                                    <span class="time">13 hours ago</span>
+                                </div>
+                                <div class="more-it">
+                                    <h6><a href="#">French cannibal horror “Raw” inspires L.A. theater to hand out “Barf Bags”</a></h6>
+
+                                    <span class="time">13 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="more-it">
+                                    <h6><a href="#">Laura Dern in talks to join Justin Kelly’s biopic “JT Leroy”</a></h6>
+                                    <span class="time">13 hours ago</span>
+                                </div>
+                                <div class="more-it">
+                                    <h6><a href="#">China punishes more than 300 cinemas for box office cheating</a></h6>
+                                    <span class="time">13 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="sb-facebook sb-it">
+                            <h4 class="sb-title">Find us on Facebook</h4>
+                            <iframe src="#" data-src="#" width="300" height="315" style="border:none;overflow:hidden" ></iframe>
+                        </div>
+                        <div class="sb-twitter sb-it">
+                            <h4 class="sb-title">Tweet to us</h4>
+                            <div class="slick-tw">
+                                <div class="tweet item" id="elonmusk">elonmusk
+                                </div>
+                                <div class="tweet item" id="onkarr19">onkarr19
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end of latest new v1 section-->
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&displa
+y=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>About Us Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <h1>MITAOE..</h1>
+            <br><br>
+            <p>
+                        We are Students of 2nd Year MITAOE where we have developed a website i.e a Movie Review System which reviews a movie on the basis of
+                sentiments.<br></br>
+                We have used <br></br>
+                 Django(Python) for Back-End <br></br>
+                Html ,CSS for Front-End<br></br>
+                PgAdmin4 for Data Storage
+            </p>
+
+        </div>
+        <div class="img">
+
+        </div>
+        <!-- <button class="btn">Read More</button> -->
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="contacts.css">
+</head>
+<body>
+  <div class="container">
+    <h3>Contact Form</h3>
+    <form action="#" name="contact_form">
+      <label for="first_name">First Name</label>
+      <input name="first_name" type="text" required placeholder="James"/>
+      <br>
+      <label for="last_name">Last Name</label>
+      <input name="last_name" type="text" required placeholder="Smith"/>
+      <br>
+      <label for="email">E-mail</label>
+      <input name="email" type="email" required placeholder="xyz@domain.com"/>
+      <br>
+      <label for="message">Any Concern / Message</label><br>
+      <textarea name="message" cols="30" rows="10" placeholder="" required> </textarea>
+      <div class="center">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Register {% endblock %}
+{% block content %}
+
+    <div id="main_cont">
+        <div class="container">
+        <br><br>
+
+            <main class="form-signin">
+                <form method="post" action="/accounts/register">
+                    {% csrf_token %}
+                <ul>
+                    <h1 class="h3 mb-3 fw-normal">Creating New Account</h1>
+                    <ul><input type="text" name="username" class="form-control" placeholder="Username" required autofocus></ul><br>
+                    <ul><input type="email" name="email" class="form-control" placeholder="Email Address" required autofocus></ul><br>
+                    <ul><input type="password" name="password1" class="form-control" placeholder="Password" required autofocus></ul><br>
+                    <ul><input type="password" name="password2" class="form-control" placeholder="Confirm Password" required autofocus></ul><br>
+                    <ul></ul>
+                    <div>
+                        {% for message in messages %}
+                            <h3>{{message}}</h3>
+                        {% endfor %}
+                    </div>
+                    <ul><button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button></ul>
+                </ul>
+                </form>
+            </main>
+
+        </div><!--//container-->
+    </div><!--//main_cont-->
+
+{% endblock %}

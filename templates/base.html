@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Website Title | {% block title %}  {% endblock %}</title>
+
+
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <meta name="generator" content="WordPress 4.9.16" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--[if lt IE 9]>
+    <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <!--[if IE]>
+    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>{
+
+    }
+    </style>
+
+</head>
+<body>
+<header id="header">
+    <div class="container">
+        <div class="menu_container">
+            <ul id="menu-menu-1" class="menu">
+                <li id="menu-item-1" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-158">
+                    <a href="/"><img src="{% static 'images/logo.png' %}" width="85" height="35"  /></a>
+                </li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-159"><a href="/new-releases/">New Releases</a></li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-199"><a href="/top-rated/">Top Rated</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="/about/">About Us</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-197"><a href="/contact/">Contact Us</a></li>
+
+        </div><!--//menu_container-->
+
+        <div class="header_right">
+            |
+            {% if user.is_authenticated %}
+                <a href="/accounts/user">Welcome, {{ user.username }}</a>
+                |
+                <a href="/accounts/logout">logout?</a>
+            {% else %}
+                <a href="/accounts/login">Log In</a>
+                |
+                <a href="/accounts/register">Sign up</a>
+            {% endif %}
+            <a href="http://twitter.com" target="_blank"><img src="{% static 'images/twitter-icon.png' %}" alt="twitter" /></a>
+            <a href="http://www.facebook.com" target="_blank"><img src="{% static 'images/facebook-icon.png' %}" alt="fb" /></a>
+            <a href="http://instagram.com" target="_blank"><img src="{% static 'images/instagram-icon.png' %}" alt="instagram" /></a>
+            <ul>
+                <form action="/search">
+                    <input type="search" name="k" placeholder="Search for movies...">
+                    <button type="button">Search</button>
+                </form>
+            </ul>
+        </div><!--//header_right-->
+
+
+        <div class="clear"></div>
+        <hr>
+    </div><!--//container-->
+</header><!--//header-->
+
+
+
+{% block content %} {% endblock %}
+
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="clear"></div>
+        <div class="copyright_text">
+            <hr>
+            2021
+        </div><!--//copyright_text-->
+    </div><!--//container-->
+</footer><!--//footer-->
+</body>
+</html>
