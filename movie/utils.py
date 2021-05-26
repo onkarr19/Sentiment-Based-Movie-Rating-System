@@ -2,6 +2,7 @@ import os
 import pickle
 import re
 import string
+import math
 
 import numpy as np
 from nltk.corpus import stopwords
@@ -63,4 +64,6 @@ def getvalue(s):
         x = model_dict.get(i, 0.5)
         arr.append(x)
 
-    return np.mean(arr)
+    x = np.mean(arr)
+
+    return x if not math.isnan(x) else 0.55
